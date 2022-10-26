@@ -9,23 +9,38 @@
  * maxSubArray([2, 4, 3, -1, -4, -9]) = 9
  */
 
+// O(n) method
 const maxSubArray = (nums) => {
-  let maxSum = 0;
+  let maxSum = nums[0];
+  let sum = 0;
 
-  if (nums.length < 2) {
-    return nums[0];
-  }
-
-  for (let i = 0; i < nums.length - 1; ++i) {
-    let sum = 0
-    for (let j = i; j < nums.length; ++j) {
-      sum += nums[j]
-      maxSum = Math.max(maxSum, sum);
+  for (let i = 0; i < nums.length; ++i) {
+    if (sum < 0) {
+      sum = 0;
     }
+    sum += nums[i];
+    maxSum = Math.max(maxSum, sum);
   }
 
   return maxSum;
-};
+}
+
+
+// O(n^2) method
+// const maxSubArray = (nums) => {
+//   let maxSum = nums[0];
+//   let sum = 0;
+
+//   for (let i = 0; i < nums.length; ++i) {
+//     let sum = 0;
+//    for(let j = i; j < nums.length; ++j){
+//     sum += nums[j]
+//     maxSum = Math.max(maxSum, sum)
+//    }
+//   }
+
+//   return maxSum;
+// }
 
 //DO NOT EDIT BELOW THIS LINE
 module.exports = maxSubArray;

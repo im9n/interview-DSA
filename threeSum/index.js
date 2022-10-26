@@ -12,7 +12,29 @@
  */
 
 function threeSum(nums) {
-  
+  const results = [];
+
+  for (let i = 0; i < nums.length; ++i) {
+    if (nums[i] === nums[i - 1]) {
+      continue;
+    }
+    const difference = 0 - nums[i];
+    let l = i + 1;
+    let r = nums.length - 1;
+
+    while (l < r) {
+      const sum = nums[l] + nums[r];
+      if (sum > difference) {
+        r--;
+      } else if (sum < difference) {
+        l++;
+      } else {
+        results.push([nums[i], nums[l], nums[r]]);
+      }
+    }
+  }
+
+  return results;
 }
 
 //DO NOT EDIT BELOW THIS LINE
