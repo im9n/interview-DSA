@@ -1,34 +1,32 @@
 /** Flatten Array **
- * 
+ *
  * Given an array 'nums' that can have nested arrays inside it,
- * flatten the array. 
- *  
- * 
+ * flatten the array.
+ *
+ *
  * @example
  * flatten([1, 2, 3, [4, 5]]) -> [1, 2, 3, 4, 5]
  * flatten([1, 2, 3, [4, [5]]]) -> [1, 2, 3, 4, 5]
  * flatten([1, [2, 3, [4, [5]]]]) -> [1, 2, 3, 4, 5]
- * 
+ *
  */
 
- const flatten = (nums) => {
-  const result = []
+const flatten = (nums) => {
+  const results = [];
 
-  const flattenHelper = (nums) => {
-    for (elem of nums){
-      if (Array.isArray(elem)){
-        flattenHelper(elem)
-      }else{
-        result.push(elem)
+  flattenHelper(nums)
+
+  function flattenHelper(nums) {
+    for (elem of nums) {
+      if (Array.isArray(elem)) {
+        flattenHelper(elem);
+      } else {
+        results.push(elem);
       }
     }
   }
 
-  flattenHelper(nums)
+  return results
+};
 
-  return result
-
-
- };
-
-module.exports = flatten; 
+module.exports = flatten;

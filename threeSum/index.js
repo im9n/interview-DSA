@@ -12,24 +12,30 @@
  */
 
 function threeSum(nums) {
+  nums.sort((a, b) => a - b);
   const results = [];
 
-  for (let i = 0; i < nums.length; ++i) {
-    if (nums[i] === nums[i - 1]) {
-      continue;
-    }
-    const difference = 0 - nums[i];
+  for (let i = 0; i < nums.length - 2; ++i) {
     let l = i + 1;
     let r = nums.length - 1;
 
+    if (nums[i] === nums[i - 1]) {
+      continue;
+    }
+
     while (l < r) {
-      const sum = nums[l] + nums[r];
-      if (sum > difference) {
+      const sum = nums[i] + nums[l] + nums[r];
+
+      if (sum > 0) {
         r--;
-      } else if (sum < difference) {
+      } else if (sum < 0) {
         l++;
       } else {
         results.push([nums[i], nums[l], nums[r]]);
+        l++
+        while(nums[l] === nums[l - 1] && l < r){
+            l++
+        }
       }
     }
   }
